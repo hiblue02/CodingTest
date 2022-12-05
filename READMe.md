@@ -99,3 +99,5 @@
 
 ## 프로그래머스
 - [x] [직사각형 넓이 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/120860)
+- [x] [최대값과 최소값](https://school.programmers.co.kr/learn/courses/30/lessons/12939)
+- [ ] [K번째수](https://school.programmers.co.kr/learn/courses/30/lessons/42748)

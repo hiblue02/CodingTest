@@ -49,7 +49,7 @@
 - [ ] [Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/) 
 - [ ] [Meeting Rooms (Leetcode Premium)](https://leetcode.com/problems/meeting-rooms/) 
 - [ ] [Meeting Rooms II (Leetcode Premium)](https://leetcode.com/problems/meeting-rooms-ii/) 
-- 
+
 ### Linked List
 - [ ] [Reverse a Linked List](https://leetcode.com/problems/reverse-linked-list/) 
 - [ ] [Detect Cycle in a Linked List](https://leetcode.com/problems/linked-list-cycle/) 
@@ -101,3 +101,4 @@
 - [x] [직사각형 넓이 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/120860)
 - [x] [최대값과 최소값](https://school.programmers.co.kr/learn/courses/30/lessons/12939)
 - [x] [K번째수](https://school.programmers.co.kr/learn/courses/30/lessons/42748)
+- [ ] [숫자타자대회](https://school.programmers.co.kr/learn/courses/30/lessons/136797)

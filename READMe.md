@@ -102,3 +102,4 @@
 - [x] [최대값과 최소값](https://school.programmers.co.kr/learn/courses/30/lessons/12939)
 - [x] [K번째수](https://school.programmers.co.kr/learn/courses/30/lessons/42748)
 - [ ] [숫자타자대회](https://school.programmers.co.kr/learn/courses/30/lessons/136797)
+- [ ] [숫자카드나누기](https://school.programmers.co.kr/learn/courses/30/lessons/135807)

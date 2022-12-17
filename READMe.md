@@ -14,7 +14,7 @@
 - [ ] [Container With Most Water](https://leetcode.com/problems/container-with-most-water/) 
 
 ### Binary
-- [ ] [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/) 
+- [x] 😅[Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/) 
 - [ ] [Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/) 
 - [ ] [Counting Bits](https://leetcode.com/problems/counting-bits/) 
 - [ ] [Missing Number](https://leetcode.com/problems/missing-number/) 
@@ -101,5 +101,5 @@
 - [x] [직사각형 넓이 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/120860)
 - [x] [최대값과 최소값](https://school.programmers.co.kr/learn/courses/30/lessons/12939)
 - [x] [K번째수](https://school.programmers.co.kr/learn/courses/30/lessons/42748)
-- [ ] [숫자타자대회](https://school.programmers.co.kr/learn/courses/30/lessons/136797)
+- [x] 😅[숫자타자대회](https://school.programmers.co.kr/learn/courses/30/lessons/136797)
 - [x] [숫자카드나누기](https://school.programmers.co.kr/learn/courses/30/lessons/135807)

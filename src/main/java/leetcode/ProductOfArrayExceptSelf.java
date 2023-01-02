@@ -2,7 +2,7 @@ package leetcode;
 
 /**
  * https://leetcode.com/problems/product-of-array-except-self/
- * 배열에서 자신을 제외한 나머지를 모두 곱한 값을 새로운 배열로 출력, 나누기 사용 금지
+ * 배열에서 자신을 제외한 나머지를 모두 곱한 값을 새로운 배열로 출력, 나누기 사용 금지s
  */
 public class ProductOfArrayExceptSelf {
     public int[] productExceptSelf(int[] nums) {

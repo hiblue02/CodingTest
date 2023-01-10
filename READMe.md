@@ -103,3 +103,4 @@
 - [x] [K번째수](https://school.programmers.co.kr/learn/courses/30/lessons/42748)
 - [x] 😅[숫자타자대회](https://school.programmers.co.kr/learn/courses/30/lessons/136797)
 - [x] [숫자카드나누기](https://school.programmers.co.kr/learn/courses/30/lessons/135807)
+- [x] [H-INDEX](https://school.programmers.co.kr/learn/courses/30/lessons/42747)

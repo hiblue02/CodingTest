@@ -46,6 +46,7 @@ class Level1Test {
         return when {
             resultString.isBlank() -> "-1"
             resultString.all { it == '0' } -> "0"
+            resultString.all { it == '0' } -> "0"
             else -> resultString.toString()
         }
 

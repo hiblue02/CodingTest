@@ -52,12 +52,53 @@ class Level1Test {
 
     }
 
+    fun 전국대회선발고사(rank: IntArray, attendance: BooleanArray): Int {
+
+        val rankWithAttendance = rank
+            .mapIndexed { index, value -> if (attendance[index]) index to value else null }.filterNotNull()
+            .sortedBy { it.second }
+        return rankWithAttendance[0].first * 10000 + rankWithAttendance[1].first * 100 + rankWithAttendance[2].first
+
+    }
+
+    fun `문자열 나누기`(s: String):Int {
+        var count = 0
+
+        data class Pot(var x: Char = '-', var xCount: Int = 0, var otherCount: Int = 0) {
+
+            fun isEmpty() = x == '-'
+
+        }
+
+        var pot = Pot()
+
+        for (x in s.toCharArray()) {
+            if (pot.isEmpty()) pot = Pot(x)
+            if (x == pot.x) pot.xCount++ else pot.otherCount++
+            if (pot.xCount == pot.otherCount) {
+                count++; pot = Pot()
+            }
+        }
+
+        return if(pot.isEmpty()) count else count+1
+
+
+
+    }
+
+    @Test
+    fun `전국대회선발고사`() {
+//        전국대회선발고사(intArrayOf(3, 7, 2, 5, 4, 6, 1), booleanArrayOf(false, true, true, true, true, false, false))
+        `문자열 나누기`("abracadabra")
+    }
+
     @Test
     fun `숫자_짝궁_Test1`() {
 //        assertEquals("-1", 숫자_짝궁("100", "2345") )
 //        assertEquals("0", 숫자_짝궁("100", "203045") )
         assertEquals("522", 숫자_짝궁("5525", "1255"))
     }
+
 }
 
 

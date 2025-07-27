@@ -115,6 +115,49 @@ class Level1Test {
         }
         return count
     }
+
+    /** [LEVEL 1 콜라문제](https://school.programmers.co.kr/learn/courses/30/lessons/132267)
+     * @param a 콜라를 받기 위해 마트에 주어야 하는 병 수
+     * @param b 마트에서 주는 새로운 병 수
+     * @param c 상빈이가 가지고 있는 병 수
+     * */
+    fun `콜라문제`(a: Int, b: Int, n: Int): Int {
+        var now = n
+        var receivedTotal = 0
+        while (now >= a) {
+            var remained = now % a
+            var received = (now / a) * b
+
+            receivedTotal += received
+            now = received + remained
+
+        }
+        return receivedTotal
+    }
+
+    @Test
+    fun 콜라문제_테스트(){
+        var answer = `콜라문제`(2,1,20)
+    }
+
+    fun `신규 아이디 추천`(new_id:String): String {
+        val step1
+//        1단계 new_id의 모든 대문자를 대응되는 소문자로 치환합니다.
+          = new_id.lowercase()
+//        2단계 new_id에서 알파벳 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)를 제외한 모든 문자를 제거합니다.
+            .replace(Regex("^a-z0-9._-"), "")
+//        3단계 new_id에서 마침표(.)가 2번 이상 연속된 부분을 하나의 마침표(.)로 치환합니다.
+          .replace(Regex(".{2,}"), ".")
+//        4단계 new_id에서 마침표(.)가 처음이나 끝에 위치한다면 제거합니다.
+          .replace(Regex("(^\\.)|(\\.$)"), "")
+//        5단계 new_id가 빈 문자열이라면, new_id에 "a"를 대입합니다.
+          .ifBlank { "a" };
+//        6단계 new_id의 길이가 16자 이상이면, new_id의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합니다.
+//        만약 제거 후 마침표(.)가 new_id의 끝에 위치한다면 끝에 위치한 마침표(.) 문자를 제거합니다.
+        var step6 = (step1.takeIf { it.length > 16 }?.substring(0, 15)?: step1).replace(Regex("(^\\.)|(\\.$)"), "")
+//        7단계 new_id의 길이가 2자 이하라면, new_id의 마지막 문자를 new_id의 길이가 3이 될 때까지 반복해서 끝에 붙입니다.
+        return step6.takeIf { step6.length <= 2 } ?: (step6 + step6.last().toString().repeat(3 - step6.length))
+    }
 }
 
 

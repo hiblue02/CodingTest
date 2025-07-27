@@ -61,7 +61,7 @@ class Level1Test {
 
     }
 
-    fun `문자열 나누기`(s: String):Int {
+    fun `문자열 나누기`(s: String): Int {
         var count = 0
 
         data class Pot(var x: Char = '-', var xCount: Int = 0, var otherCount: Int = 0) {
@@ -80,8 +80,7 @@ class Level1Test {
             }
         }
 
-        return if(pot.isEmpty()) count else count+1
-
+        return if (pot.isEmpty()) count else count + 1
 
 
     }
@@ -100,11 +99,22 @@ class Level1Test {
     }
 
     // 속도 문제
-    fun `나머지가 1이 되는 숫자 찾기`(n:Int):Int {
-       return generateSequence (2) { it + 1 }.first{n % it == 1}
+    fun `나머지가 1이 되는 숫자 찾기`(n: Int): Int {
+        return generateSequence(2) { it + 1 }.first { n % it == 1 }
     }
 
-
+    /** [LEVEL 1 삼총사](https://school.programmers.co.kr/learn/courses/30/lessons/131705) */
+    fun `삼총사`(number: IntArray): Int {
+        var count = 0
+        for (a in 0 until number.size - 2) {
+            for (b in a + 1 until number.size - 1) {
+                for (c in b + 1 until number.size) {
+                    if (number[a] + number[b] + number[c] == 0) count++
+                }
+            }
+        }
+        return count
+    }
 }
 
 

@@ -99,6 +99,12 @@ class Level1Test {
         assertEquals("522", 숫자_짝궁("5525", "1255"))
     }
 
+    // 속도 문제
+    fun `나머지가 1이 되는 숫자 찾기`(n:Int):Int {
+       return generateSequence (2) { it + 1 }.first{n % it == 1}
+    }
+
+
 }
 
 

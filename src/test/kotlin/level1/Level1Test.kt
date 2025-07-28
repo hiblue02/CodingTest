@@ -1,7 +1,6 @@
 package level1
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import kotlin.test.*
 
 class Level1Test {
 
@@ -136,27 +135,87 @@ class Level1Test {
     }
 
     @Test
-    fun 콜라문제_테스트(){
-        var answer = `콜라문제`(2,1,20)
+    fun 콜라문제_테스트() {
+        var answer = `콜라문제`(2, 1, 20)
     }
 
-    fun `신규 아이디 추천`(new_id:String): String {
+    fun `신규 아이디 추천`(new_id: String): String {
         val step1
 //        1단계 new_id의 모든 대문자를 대응되는 소문자로 치환합니다.
-          = new_id.lowercase()
+                = new_id.lowercase()
 //        2단계 new_id에서 알파벳 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)를 제외한 모든 문자를 제거합니다.
             .replace(Regex("^a-z0-9._-"), "")
 //        3단계 new_id에서 마침표(.)가 2번 이상 연속된 부분을 하나의 마침표(.)로 치환합니다.
-          .replace(Regex(".{2,}"), ".")
+            .replace(Regex(".{2,}"), ".")
 //        4단계 new_id에서 마침표(.)가 처음이나 끝에 위치한다면 제거합니다.
-          .replace(Regex("(^\\.)|(\\.$)"), "")
+            .replace(Regex("(^\\.)|(\\.$)"), "")
 //        5단계 new_id가 빈 문자열이라면, new_id에 "a"를 대입합니다.
-          .ifBlank { "a" };
+            .ifBlank { "a" };
 //        6단계 new_id의 길이가 16자 이상이면, new_id의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합니다.
 //        만약 제거 후 마침표(.)가 new_id의 끝에 위치한다면 끝에 위치한 마침표(.) 문자를 제거합니다.
-        var step6 = (step1.takeIf { it.length > 16 }?.substring(0, 15)?: step1).replace(Regex("(^\\.)|(\\.$)"), "")
+        var step6 = (step1.takeIf { it.length > 16 }?.substring(0, 15) ?: step1).replace(Regex("(^\\.)|(\\.$)"), "")
 //        7단계 new_id의 길이가 2자 이하라면, new_id의 마지막 문자를 new_id의 길이가 3이 될 때까지 반복해서 끝에 붙입니다.
         return step6.takeIf { step6.length <= 2 } ?: (step6 + step6.last().toString().repeat(3 - step6.length))
+    }
+
+    fun `옹알이`(babbling: Array<String>): Int {
+        return babbling.count { avaliable(it) }
+    }
+
+    data class State(val prefix: String, val remain: String)
+
+    fun avaliable(s: String): Boolean {
+        var now = State("", s)
+        while (true) {
+            val next = getStartIndex(now.remain)
+            if (next.prefix == now.prefix) return false // 중복
+            if (next.prefix == "") return false
+            if (next.remain == "") return true
+            now = next
+        }
+    }
+
+    val avaliableSound = arrayOf("aya", "ye", "woo", "ma")
+    fun getStartIndex(s: String): State {
+        for (sound in avaliableSound) {
+            if (s.startsWith(sound)) return State(sound, s.substring(sound.length))
+        }
+        return State("", s)
+    }
+
+    fun 이차원배열_자르기(n: Int, left: Long, right: Long): IntArray {
+        val leftInt = left.toInt()
+        val rightInt = right.toInt();
+
+        val answer = IntArray(rightInt - leftInt + 1)
+
+        for(i in leftInt .. rightInt) {
+            val a = i / n
+            val b = i % n
+            answer[i - leftInt] = (maxOf(a,b) + 1)
+        }
+
+
+        return answer
+    }
+
+    fun makeArray(n:Int):Array<IntArray> {
+        val array = Array(n) {IntArray(n)}
+        for (a in 0 until  n){
+            for(b in 0 until n) {
+                array[a][b] = maxOf(a, b) + 1
+            }
+        }
+        return array
+    }
+
+    @Test
+    fun `옹알이 테스트`() {
+//        assertFalse(avaliable("yeyeye"))
+//        assertFalse(avaliable("uuu"))
+        assertFalse(avaliable("u"))
+        assertTrue(avaliable("yemawoo"))
+        assertTrue(avaliable("ayaye"))
     }
 }
 

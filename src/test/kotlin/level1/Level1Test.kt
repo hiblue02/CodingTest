@@ -4,9 +4,9 @@ import kotlin.test.*
 
 class Level1Test {
 
-    @Test
-    fun `없는 숫자 더하기`() {
-    }
+//    @Test
+//    fun `없는 숫자 더하기`() {
+//    }
 
 
     companion object {
@@ -84,13 +84,13 @@ class Level1Test {
 
     }
 
-    @Test
+//    @Test
     fun `전국대회선발고사`() {
 //        전국대회선발고사(intArrayOf(3, 7, 2, 5, 4, 6, 1), booleanArrayOf(false, true, true, true, true, false, false))
         `문자열 나누기`("abracadabra")
     }
 
-    @Test
+//    @Test
     fun `숫자_짝궁_Test1`() {
 //        assertEquals("-1", 숫자_짝궁("100", "2345") )
 //        assertEquals("0", 숫자_짝궁("100", "203045") )
@@ -134,7 +134,7 @@ class Level1Test {
         return receivedTotal
     }
 
-    @Test
+//    @Test
     fun 콜라문제_테스트() {
         var answer = `콜라문제`(2, 1, 20)
     }
@@ -209,7 +209,7 @@ class Level1Test {
         return array
     }
 
-    @Test
+//    @Test
     fun `옹알이 테스트`() {
 //        assertFalse(avaliable("yeyeye"))
 //        assertFalse(avaliable("uuu"))

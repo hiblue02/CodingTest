@@ -23,3 +23,12 @@ fun 배열_나열하기(arr: IntArray, query: IntArray): IntArray {
     }
     return result.toIntArray()
 }
+
+/**
+ * 0과 5로만 이루어진 모든 정수
+ */
+fun 배열_만들기2(l: Int, r: Int): IntArray {
+   return (l .. r).filter { it ->  it.toString().all { it == '0' || it == '5' } }
+       .ifEmpty { listOf(-1) }
+       .toIntArray()
+}

@@ -16,7 +16,7 @@ fun 배열_나열하기(arr: IntArray, query: IntArray): IntArray {
     var result = arr.toMutableList()
     query.forEachIndexed { index, value ->
         if (index % 2 == 0) { // 짝수
-            result = result.subList(0, value+1);
+            result = result.subList(0, value + 1);
         } else { // 홀수
             result = result.subList(value, result.size)
         }
@@ -28,7 +28,18 @@ fun 배열_나열하기(arr: IntArray, query: IntArray): IntArray {
  * 0과 5로만 이루어진 모든 정수
  */
 fun 배열_만들기2(l: Int, r: Int): IntArray {
-   return (l .. r).filter { it ->  it.toString().all { it == '0' || it == '5' } }
-       .ifEmpty { listOf(-1) }
-       .toIntArray()
+    return (l..r).filter { it -> it.toString().all { it == '0' || it == '5' } }.ifEmpty { listOf(-1) }.toIntArray()
+}
+
+/**
+ * 정사각형 만들기
+ */
+fun 정사각형_만들기(arr: Array<IntArray>): Array<IntArray> {
+    val maxSize = maxOf(arr.size, arr[0].size)
+    return Array(maxSize) { row ->
+        IntArray(maxSize) { col ->
+            arr.getOrNull(row)?.getOrNull(col)?: 0
+        }
+
+    }
 }

@@ -1,5 +1,7 @@
 package org.example.level0
 
+import java.util.*
+
 /**
  * 정수 배열 arr와 query가 주어집니다.
  *
@@ -38,8 +40,26 @@ fun 정사각형_만들기(arr: Array<IntArray>): Array<IntArray> {
     val maxSize = maxOf(arr.size, arr[0].size)
     return Array(maxSize) { row ->
         IntArray(maxSize) { col ->
-            arr.getOrNull(row)?.getOrNull(col)?: 0
+            arr.getOrNull(row)?.getOrNull(col) ?: 0
         }
 
     }
+}
+
+fun 과일장수(k: Int, m: Int, score: IntArray): Int {
+    val scoreSorted = PriorityQueue<Int>(compareByDescending { it })
+    scoreSorted.addAll(score.toList())
+    var result: Int = 0
+    val box = mutableListOf<Int>()
+    while (scoreSorted.isNotEmpty()) {
+        if (box.size == m) {
+            result += box.min() * m
+            box.clear()
+        }
+        box.add(scoreSorted.poll())
+    }
+    if(box.size == m) {
+        result += box.minOrNull()!! * m
+    }
+    return result
 }

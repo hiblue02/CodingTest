@@ -1,6 +1,5 @@
 package org.example.level2
 
-import kotlin.math.max
 import kotlin.math.sqrt
 
 fun solution(numbers: String): Int {
@@ -84,7 +83,7 @@ fun solution4(k: Int, dungeons: Array<IntArray>): Int {
     var maxCount = 0
     val visited = BooleanArray(dungeons.size) { false }
 
-    fun explore(current: Int, count:Int) {
+    fun explore(current: Int, count: Int) {
         maxCount = maxOf(maxCount, count)
         for (i in dungeons.indices) {
             if (!visited[i] && current >= dungeons[i][0]) {
@@ -96,6 +95,16 @@ fun solution4(k: Int, dungeons: Array<IntArray>): Int {
     }
 
 
-   explore(k, 0)
+    explore(k, 0)
     return maxCount
+}
+
+/**
+ * 의상
+ */
+fun solution(clothes: Array<Array<String>>): Int {
+    return clothes.groupBy { it[1] }
+        .map { (_, items) -> items.size + 1 }
+        .reduce { acc, count -> acc * count }
+        .minus(1)
 }

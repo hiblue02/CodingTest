@@ -66,14 +66,14 @@ fun 과일장수(k: Int, m: Int, score: IntArray): Int {
 
 var cache = mutableMapOf<Int, Int>()
 fun 피보나치수열(n: Int): Int {
-    return pivonacci(n) / 1234567
+    return fivonacci(n) % 1234567
 }
 
-fun pivonacci(n:Int): Int {
-    if(n == 0) return 0
-    if(n == 1) return 1
-    if(cache.containsKey(n)) return cache[n]!!
-    val result =  pivonacci(n-1) + pivonacci(n-2)
+fun fivonacci(n:Int): Int {
+    if(n <= 1) return n
+    if(cache.containsKey(n)){return cache[n]!!}
+    val result = (fivonacci(n-1) + fivonacci(n-2)) % 1234567
     cache.put(n, result)
     return result
 }
+

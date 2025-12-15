@@ -40,3 +40,38 @@ fun solution(numbers: String): Int {
 
     return numberSet.count { isPrime(it) }
 }
+
+/**
+ * 카펫
+ */
+fun solution2(brown: Int, yellow: Int): IntArray {
+    val total = brown + yellow
+    for (height in 3..total) {
+        if (total % height == 0) {
+            val width = total / height
+            if ((width - 2) * (height - 2) == yellow) {
+                return intArrayOf(width, height)
+            }
+        }
+    }
+    return intArrayOf(0, 0)
+}
+
+/**
+ * 카펫 다른 풀이
+ */
+fun solution3(brown: Int, yellow: Int): IntArray {
+    val total = brown + yellow
+
+    for (height in 3..sqrt(total.toDouble()).toInt()) {
+        if (total % height > 0) continue
+
+        val width = total / height
+        val inner = (width - 2) * (height - 2)
+
+        if(inner == yellow) {
+            return intArrayOf(width, height)
+        }
+}
+return intArrayOf(0, 0)
+}

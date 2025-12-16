@@ -1,5 +1,6 @@
 package org.example.level2
 
+import kotlin.math.min
 import kotlin.math.sqrt
 
 fun solution(numbers: String): Int {
@@ -115,12 +116,13 @@ fun solution5(clothes: Array<Array<String>>): Int {
 fun solution(genres: Array<String>, plays: IntArray): IntArray {
 
     // 장르로 그룹 만들고 <인덱스, 재생횟수> List 저장
-    data class song(val index:Int, val genre:String, val playCount:Int)
-    val store = genres.mapIndexed{ index, genre -> song(index, genre, plays[index])}
+    data class song(val index: Int, val genre: String, val playCount: Int)
+
+    val store = genres.mapIndexed { index, genre -> song(index, genre, plays[index]) }
         .groupBy { it.genre }
 
     // 장르별 재생횟수 합산 후 내림차순 정렬
-    val genrePlayCount = store.mapValues { entries -> entries.value.sumOf{it.playCount} }
+    val genrePlayCount = store.mapValues { entries -> entries.value.sumOf { it.playCount } }
         .toList()
         .sortedByDescending { it.second }
 
@@ -129,7 +131,7 @@ fun solution(genres: Array<String>, plays: IntArray): IntArray {
     for ((genre, _) in genrePlayCount) {
         val songs = store[genre]!!.toList().sortedByDescending { it.playCount }
         result.add(songs[0].index)
-        if(songs.size > 1) {
+        if (songs.size > 1) {
             result.add(songs[1].index)
         }
     }
@@ -138,7 +140,7 @@ fun solution(genres: Array<String>, plays: IntArray): IntArray {
 }
 
 fun solution2(genres: Array<String>, plays: IntArray): IntArray {
-    return  genres.indices.groupBy { genres[it] }
+    return genres.indices.groupBy { genres[it] }
         .toList()
         .also { println("$it") }
         .sortedByDescending { it.second.sumOf { plays[it] } }
@@ -148,6 +150,47 @@ fun solution2(genres: Array<String>, plays: IntArray): IntArray {
         .flatten()
         .toIntArray()
 
+}
+
+/**
+ * 송전탑
+ * n은 2 이상 100 이하인 자연수입니다.
+ * wires는 길이가 n-1인 정수형 2차원 배열입니다.
+ * wires의 각 원소는 [v1, v2] 2개의 자연수로 이루어져 있으며, 이는 전력망의 v1번 송전탑과 v2번 송전탑이 전선으로 연결되어 있다는 것을 의미합니다.
+ * 1 ≤ v1 < v2 ≤ n 입니다.
+ * 전력망 네트워크가 하나의 트리 형태가 아닌 경우는 입력으로 주어지지 않습니다.
+ */
+
+fun solution3(n: Int, wires: Array<IntArray>): Int {
+    fun count(graph: MutableMap<Int, MutableList<Int>>, start: Int): Int {
+        val visited = mutableSetOf<Int>()
+        val queue = ArrayDeque<Int>()
+        visited.add(start); queue.add(start)
+
+        while (queue.isNotEmpty()) {
+            val node = queue.removeFirst()
+            graph[node]?.forEach { next ->
+                if (next !in visited) {
+                    visited.add(next); queue.add(next)
+                }
+            }
+        }
+        return visited.size
+    }
+
+    var minDiff = n
+    for (wire in wires) {
+        val graph = mutableMapOf<Int, MutableList<Int>>()
+        wires.filter { it != wire }.forEach { (a,b)->
+            graph.getOrPut(a) { mutableListOf() }.add(b)
+            graph.getOrPut(b) { mutableListOf() }.add(a)
+        }
+        val count1 = count(graph, wire[0])
+        val count2 = n - count1
+        minDiff = minOf(minDiff, kotlin.math.abs(count1 - count2))
+    }
+
+    return minDiff
 }
 
 fun main() {

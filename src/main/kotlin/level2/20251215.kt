@@ -102,9 +102,54 @@ fun solution4(k: Int, dungeons: Array<IntArray>): Int {
 /**
  * 의상
  */
-fun solution(clothes: Array<Array<String>>): Int {
+fun solution5(clothes: Array<Array<String>>): Int {
     return clothes.groupBy { it[1] }
         .map { (_, items) -> items.size + 1 }
         .reduce { acc, count -> acc * count }
         .minus(1)
+}
+
+/**
+ * 베스트앨범
+ */
+fun solution(genres: Array<String>, plays: IntArray): IntArray {
+
+    // 장르로 그룹 만들고 <인덱스, 재생횟수> List 저장
+    data class song(val index:Int, val genre:String, val playCount:Int)
+    val store = genres.mapIndexed{ index, genre -> song(index, genre, plays[index])}
+        .groupBy { it.genre }
+
+    // 장르별 재생횟수 합산 후 내림차순 정렬
+    val genrePlayCount = store.mapValues { entries -> entries.value.sumOf{it.playCount} }
+        .toList()
+        .sortedByDescending { it.second }
+
+    // 장르별로 재생횟수 높은 노래 2곡씩 선택
+    val result = mutableListOf<Int>()
+    for ((genre, _) in genrePlayCount) {
+        val songs = store[genre]!!.toList().sortedByDescending { it.playCount }
+        result.add(songs[0].index)
+        if(songs.size > 1) {
+            result.add(songs[1].index)
+        }
+    }
+
+    return result.toIntArray()
+}
+
+fun solution2(genres: Array<String>, plays: IntArray): IntArray {
+    return  genres.indices.groupBy { genres[it] }
+        .toList()
+        .also { println("$it") }
+        .sortedByDescending { it.second.sumOf { plays[it] } }
+        .also { println("$it") }
+        .map { it.second.sortedByDescending { plays[it] }.take(2) }
+        .also { println("$it") }
+        .flatten()
+        .toIntArray()
+
+}
+
+fun main() {
+    solution2(arrayOf("classic", "pop", "classic", "classic", "pop"), intArrayOf(500, 600, 150, 800, 2500))
 }

@@ -47,3 +47,8 @@ fun solution12(word: String): Int {
 }
 
 
+fun solution13(progresses: IntArray, speeds: IntArray): IntArray {
+    var answer = intArrayOf()
+    return answer
+}
+

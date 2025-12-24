@@ -70,5 +70,35 @@ fun solution(begin: String, target: String, words: Array<String>): Int {
 
     find(begin, 0)
 
-    return if(answer == Integer.MAX_VALUE) 0 else answer
+    return if (answer == Integer.MAX_VALUE) 0 else answer
+}
+
+/**
+ * 여행경로
+ */
+fun solution(tickets: Array<Array<String>>): Array<String> {
+    val paths = ArrayList<ArrayList<String>>()
+    val visited = BooleanArray(tickets.size)
+    fun pass(current: ArrayList<String>, depth: Int) {
+        if (depth == tickets.size) {
+            paths.add(current)
+            return
+        }
+        val now = current.lastOrNull()!!
+        for (index in tickets.indices) {
+            if (!visited[index] && (now == tickets[index][0])) {
+                visited[index] == true
+                current.add(tickets[index][1])
+                pass(current, depth+1)
+                current.removeLast()
+                visited[index] == false
+            }
+        }
+    }
+
+    val current = arrayListOf("ICN")
+    pass(current, 0)
+
+    return paths.minByOrNull { it.joinToString ()}!!.toTypedArray()
+
 }
